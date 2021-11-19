@@ -18,7 +18,7 @@ jobs:
         env:
           RESOURCE_GROUP: RG-Test
           RESOURCE_GROUP_REGION: eastus
-          SERVER_NAME: vm-github-action
+          SERVER_NAME: vmgitaction
           ADMIN_LOGIN: ${{ secrets.ADMIN_LOGIN }}
           SERVER_USER: "gitaction"
         run: >
