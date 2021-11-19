@@ -6,28 +6,28 @@ jobs:
 # Deploy VM in Azure
   DeployVM:
     runs-on: windows-latest
-steps:
-    # checkout code from repo
-    - name: checkout repo
-      uses: actions/checkout@v1
-    - name: look for powershell file
-      run: |
-        ls '${{ env.OUTPUT_PATH }}\iac\azcli'
-    
-    - name: provision virtual machine in azure
-      env:
-        RESOURCE_GROUP: RG-Test
-        RESOURCE_GROUP_REGION: eastus
-        SERVER_NAME: vm-github-action
-        ADMIN_LOGIN: ${{ secrets.ADMIN_LOGIN }}
-      run: >
-        powershell -command "& '${{ env.OUTPUT_PATH }}\iac\azcli\vmcreation.ps1'" 
-        -servicePrincipal ${{ secrets.SERVICE_PRINCIPAL_APPID }}
-        -servicePrincipalSecret ${{ secrets.SERVICE_PRINCIPAL_SECRET }} 
-        -servicePrincipalTenantId ${{ secrets.SERVICE_PRINCIPAL_TENANTID }} 
-        -azureSubscriptionName ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        -resourceGroupName %RESOURCE_GROUP% 
-        -resourceGroupNameRegion %RESOURCE_GROUP_REGION% 
-        -serverName %SERVER_NAME% 
-        -adminLogin ${{ secrets.ADMIN_LOGIN }} 
-        -adminPassword ${{ secrets.ADMIN_PASSWORD }} 
+    steps:
+      # checkout code from repo
+      - name: checkout repo
+        uses: actions/checkout@v1
+      - name: look for powershell file
+        run: |
+          ls '${{ env.OUTPUT_PATH }}\iac\azcli'
+      
+      - name: provision virtual machine in azure
+        env:
+          RESOURCE_GROUP: RG-Test
+          RESOURCE_GROUP_REGION: eastus
+          SERVER_NAME: vm-github-action
+          ADMIN_LOGIN: ${{ secrets.ADMIN_LOGIN }}
+        run: >
+          powershell -command "& '${{ env.OUTPUT_PATH }}\iac\azcli\vmcreation.ps1'" 
+          -servicePrincipal ${{ secrets.SERVICE_PRINCIPAL_APPID }}
+          -servicePrincipalSecret ${{ secrets.SERVICE_PRINCIPAL_SECRET }} 
+          -servicePrincipalTenantId ${{ secrets.SERVICE_PRINCIPAL_TENANTID }} 
+          -azureSubscriptionName ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          -resourceGroupName %RESOURCE_GROUP% 
+          -resourceGroupNameRegion %RESOURCE_GROUP_REGION% 
+          -serverName %SERVER_NAME% 
+          -adminLogin ${{ secrets.ADMIN_LOGIN }} 
+          -adminPassword ${{ secrets.ADMIN_PASSWORD }} 
