@@ -5,21 +5,21 @@ on: [push]
 jobs:
 # Deploy VM in Azure
   DeployVM:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 steps:
     # checkout code from repo
     - name: checkout repo
       uses: actions/checkout
-    - name: look for ps1 file
+    - name: look for powershell file
       run: |
         ls '${{ env.OUTPUT_PATH }}\IaC\AzCLI'
     
     - name: provision virtual machine in azure
       env:
-        RESOURCE_GROUP: xxxxx
-        RESOURCE_GROUP_REGION: xxxxx
-        SERVER_NAME: xxxxxx
-        ADMIN_LOGIN: xxxx
+        RESOURCE_GROUP: RG-Test
+        RESOURCE_GROUP_REGION: eastus
+        SERVER_NAME: vm-github-action
+        ADMIN_LOGIN: ${{ secrets.ADMIN_LOGIN }}
       run: >
         powershell -command "& '${{ env.OUTPUT_PATH }}\IaC\AzCLI\vmcreation.ps1'" 
         -servicePrincipal ${{ secrets.SERVICE_PRINCIPAL_APPID }}
@@ -29,5 +29,5 @@ steps:
         -resourceGroupName %RESOURCE_GROUP% 
         -resourceGroupNameRegion %RESOURCE_GROUP_REGION% 
         -serverName %SERVER_NAME% 
-        -adminLogin %ADMIN_LOGIN% 
+        -adminLogin ${{ secrets.ADMIN_LOGIN }} 
         -adminPassword ${{ secrets.ADMIN_PASSWORD }} 
