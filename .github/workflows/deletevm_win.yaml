@@ -16,7 +16,7 @@ jobs:
         run: |
           ls '${{ env.OUTPUT_PATH }}\iac\azcli'
       
-      - name: provision virtual machine in azure
+      - name: Delete virtual machine in azure
         env:
           RESOURCE_GROUP: RG-Test
           RESOURCE_GROUP_REGION: eastus
