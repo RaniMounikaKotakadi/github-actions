@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - .github/workflows/deletevm_win.yaml
+      - iac/azcli/vmdeletion.ps1
 jobs:
 # Deploy VM in Azure
   DeleteVM:

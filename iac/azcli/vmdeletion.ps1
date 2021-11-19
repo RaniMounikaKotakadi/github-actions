@@ -77,7 +77,7 @@ Write-Output ""
 #     Write-Output ""
 #  #endregion
 
-#region Create VM
+#region Delete VM
 # Delete a VM in the resource group
 Write-Output "Deleting VM..."
 try {
