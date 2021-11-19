@@ -21,7 +21,7 @@ steps:
         SERVER_NAME: vm-github-action
         ADMIN_LOGIN: ${{ secrets.ADMIN_LOGIN }}
       run: >
-        powershell -command "& '${{ env.OUTPUT_PATH }}\IaC\AzCLI\vmcreation.ps1'" 
+        powershell -command "& '${{ env.OUTPUT_PATH }}\iac\azcli\vmcreation.ps1'" 
         -servicePrincipal ${{ secrets.SERVICE_PRINCIPAL_APPID }}
         -servicePrincipalSecret ${{ secrets.SERVICE_PRINCIPAL_SECRET }} 
         -servicePrincipalTenantId ${{ secrets.SERVICE_PRINCIPAL_TENANTID }} 
