@@ -12,7 +12,7 @@ steps:
       uses: actions/checkout
     - name: look for powershell file
       run: |
-        ls '${{ env.OUTPUT_PATH }}\IaC\AzCLI'
+        ls '${{ env.OUTPUT_PATH }}\iac\azcli'
     
     - name: provision virtual machine in azure
       env:
