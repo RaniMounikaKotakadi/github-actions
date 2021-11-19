@@ -1,5 +1,5 @@
 name: GitHub action file for CI/CD pipeline
-Env:
+env:
   OUTPUT_PATH: ${{ github.workspace }}
 on: [push]
 jobs:
