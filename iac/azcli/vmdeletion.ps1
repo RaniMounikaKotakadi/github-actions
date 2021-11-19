@@ -78,8 +78,8 @@ Write-Output ""
 #  #endregion
 
 #region Create VM
-# Create a VM in the resource group
-Write-Output "Creating VM..."
+# Delete a VM in the resource group
+Write-Output "Deleting VM..."
 try {
     az vm delete  `
         --resource-group $resourceGroupName `

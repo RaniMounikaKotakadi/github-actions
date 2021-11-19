@@ -3,7 +3,7 @@ env:
   OUTPUT_PATH: ${{ github.workspace }}
 push:
     paths:
-      - ./deletevm_win.yaml
+      - .github/workflows/deletevm_win.yaml
 jobs:
 # Deploy VM in Azure
   DeleteVM:
