@@ -1,9 +1,10 @@
 name: GitHub action file for CI/CD pipeline
 env:
   OUTPUT_PATH: ${{ github.workspace }}
-push:
-    paths:
-      - .github/workflows/deletevm_win.yaml
+on:
+  push:
+      paths:
+        - ./deletevm_win.yaml
 jobs:
 # Deploy VM in Azure
   DeleteVM:
