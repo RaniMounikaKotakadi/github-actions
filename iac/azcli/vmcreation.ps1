@@ -36,7 +36,11 @@ param(
 
     [Parameter(Mandatory = $True)]  
     [String]
-    $adminPassword
+    $adminPassword,
+
+    [Parameter(Mandatory = $True)]  
+    [String]
+    $SERVER_USER
 )
 
 
@@ -81,7 +85,7 @@ try {
         --resource-group $resourceGroupName `
         --name $serverName `
         --image win2019datacenter `
-        --admin-username $adminLogin `
+        --admin-username $SERVER_USER `
         --admin-password $adminPassword
     }
 catch {
