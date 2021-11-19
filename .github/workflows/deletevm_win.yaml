@@ -1,0 +1,37 @@
+name: GitHub action file for CI/CD pipeline
+env:
+  OUTPUT_PATH: ${{ github.workspace }}
+push:
+    paths:
+      - ./deletevm_win.yaml
+jobs:
+# Deploy VM in Azure
+  DeleteVM:
+    runs-on: windows-latest
+    steps:
+      # checkout code from repo
+      - name: checkout repo
+        uses: actions/checkout@v1
+      - name: look for powershell file
+        run: |
+          ls '${{ env.OUTPUT_PATH }}\iac\azcli'
+      
+      - name: provision virtual machine in azure
+        env:
+          RESOURCE_GROUP: RG-Test
+          RESOURCE_GROUP_REGION: eastus
+          SERVER_NAME: vmgitaction
+          ADMIN_LOGIN: ${{ secrets.ADMIN_LOGIN }}
+          SERVER_USER: "gitaction"
+        run: >
+          powershell -command "& '${{ env.OUTPUT_PATH }}\iac\azcli\vmdeletion.ps1'" 
+          -servicePrincipal ${{ secrets.SERVICE_PRINCIPAL_APPID }}
+          -servicePrincipalSecret ${{ secrets.SERVICE_PRINCIPAL_SECRET }} 
+          -servicePrincipalTenantId ${{ secrets.SERVICE_PRINCIPAL_TENANTID }} 
+          -azureSubscriptionName ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          -resourceGroupName %RESOURCE_GROUP% 
+          -resourceGroupNameRegion %RESOURCE_GROUP_REGION% 
+          -serverName %SERVER_NAME%
+          -SERVER_USER %SERVER_USER%
+          -adminLogin ${{ secrets.ADMIN_LOGIN }} 
+          -adminPassword ${{ secrets.ADMIN_PASSWORD }} 
