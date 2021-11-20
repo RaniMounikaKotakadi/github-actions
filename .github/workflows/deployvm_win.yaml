@@ -4,7 +4,8 @@ env:
 on: 
   push:
     paths:
-      - ./deployvm_win.yaml
+      - .github/workflows/deployvm_win.yaml
+      - iac/azcli/vmcreation.ps1
 jobs:
 # Deploy VM in Azure
   DeployVM:

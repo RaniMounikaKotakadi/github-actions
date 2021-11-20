@@ -91,6 +91,6 @@ try {
 catch {
     Write-Output "VM already exists"
     }
-Write-Output "Done creating VM"
+Write-Output "VM Creation Completed"
 Write-Output ""
 #endregion
