@@ -84,8 +84,7 @@ try {
     az vm delete  `
         --resource-group $resourceGroupName `
         --name $serverName `
-        --yes `
-        --output yaml
+        --yes
     }
 catch {
     Write-Output "VM deletion failed"
